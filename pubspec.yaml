@@ -1,0 +1,36 @@
+name: reserve_liquor
+description: "Reserve – Spirits · Wine · Beyond. A premium liquor shopping app."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.4.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  provider: ^6.1.2
+  cupertino_icons: ^1.0.8
+  shared_preferences: ^2.5.5
+  image_picker: ^1.2.3
+  path_provider: ^2.1.6
+  crypto: ^3.0.7
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+  fonts:
+    - family: Playfair
+      fonts:
+        - asset: assets/fonts/PlayfairDisplay.ttf
+        - asset: assets/fonts/PlayfairDisplay-Italic.ttf
+          style: italic
+    - family: Manrope
+      fonts:
+        - asset: assets/fonts/Manrope.ttf

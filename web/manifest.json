@@ -1,0 +1,39 @@
+{
+    "name": "Reserve — Spirits · Wine · Beyond",
+    "short_name": "Reserve",
+    "id": "./",
+    "start_url": "./",
+    "scope": "./",
+    "display": "standalone",
+    "background_color": "#F4EDE4",
+    "theme_color": "#6B1520",
+    "description": "A premium spirits and wine shopping app. Browse whisky, gin, wine and more, build a cart and track a delivery.",
+    "orientation": "portrait-primary",
+    "categories": ["shopping", "food"],
+    "lang": "en",
+    "prefer_related_applications": false,
+    "icons": [
+        {
+            "src": "icons/Icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-maskable-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "icons/Icon-maskable-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ]
+}

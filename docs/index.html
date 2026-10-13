@@ -1,0 +1,1087 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reserve: Spirits · Wine · Beyond | Free Android app demo (APK)</title>
+<meta name="description" content="Download Reserve, a free premium liquor-shopping concept app for Android. Browse, check out and watch a simulated delivery, all offline on sample data. No ads, no tracking. Android 7.0+.">
+<meta name="theme-color" content="#6B1520">
+<meta name="color-scheme" content="light">
+
+<!-- Share previews: absolute URLs for the GitHub Pages address. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Reserve">
+<meta property="og:title" content="Reserve: Spirits · Wine · Beyond, free Android app demo">
+<meta property="og:description" content="A premium liquor-shopping concept app for India. Download the free APK and try it: offline, on sample data, no ads or tracking.">
+<meta property="og:image" content="https://noopur-design.github.io/reserve/assets/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The RESERVE wordmark above five app screens in phone frames: onboarding, a whisky product page, home, checkout and order tracking.">
+<meta property="og:url" content="https://noopur-design.github.io/reserve/">
+<link rel="canonical" href="https://noopur-design.github.io/reserve/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Reserve: Spirits · Wine · Beyond, free Android app demo">
+<meta name="twitter:description" content="Download the free APK and try a premium liquor-shopping concept app, offline on sample data.">
+<meta name="twitter:image" content="https://noopur-design.github.io/reserve/assets/og-cover.jpg">
+<meta name="twitter:image:alt" content="The RESERVE wordmark above five app screens in phone frames.">
+
+<link rel="icon" type="image/png" sizes="64x64" href="assets/favicon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap">
+<link rel="preload" as="image" href="assets/phone-home.webp" type="image/webp">
+
+<script>document.documentElement.className += ' js';</script>
+<style>
+:root {
+  /* Brand (from the app's AppColors) */
+  --cream: #F4EDE4;
+  --cream-light: #FAF6F0;
+  --card: #FBF7F2;
+  --border: #E8DDCF;
+  --chip: #EDE3D6;
+  --maroon: #6B1520;
+  --maroon-dark: #4E0E16;
+  --maroon-soft: #F3DFDC;
+  --gold: #C6A06A;          /* decoration and text on dark backgrounds only */
+  --gold-deep: #7D5E2F;     /* gold text on light backgrounds (5.1:1 on cream) */
+  --ink: #1E1916;
+  --grey: #5E5650;          /* secondary text (6.2:1 on cream) */
+  --dark: #130D0A;
+  --green: #1F4A2C;
+  --bezel: #1A1512;
+
+  --serif: "Playfair Display", Georgia, "Times New Roman", serif;
+  --sans: Manrope, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, "Liberation Mono", monospace;
+
+  --gutter: 16px;
+  --max: 1160px;
+  --radius: 20px;
+  --header-h: 64px;
+  --focus: var(--gold-deep);
+  --shadow-sm: 0 1px 2px rgba(40, 22, 18, .06), 0 4px 14px rgba(40, 22, 18, .06);
+  --shadow-md: 0 2px 6px rgba(40, 22, 18, .08), 0 18px 40px rgba(40, 22, 18, .12);
+}
+@media (min-width: 640px) { :root { --gutter: 24px; } }
+@media (min-width: 1024px) { :root { --gutter: 32px; --header-h: 72px; } }
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 1rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+img, svg { display: block; max-width: 100%; }
+img { height: auto; }
+a { color: inherit; }
+p { margin: 0 0 1em; }
+h1, h2, h3 { font-family: var(--serif); font-weight: 500; line-height: 1.12; letter-spacing: -0.01em; margin: 0; }
+h2 { font-size: clamp(2rem, 1.45rem + 2.3vw, 3rem); }
+h3 { font-size: 1.3rem; line-height: 1.25; }
+em { font-style: italic; }
+code, .mono { font-family: var(--mono); }
+[hidden] { display: none !important; }
+::selection { background: var(--maroon); color: var(--cream); }
+
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; border-radius: 6px; }
+.on-dark { --focus: var(--gold); }
+
+.icon { width: 24px; height: 24px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+
+.container { width: 100%; max-width: calc(var(--max) + 2 * var(--gutter)); margin-inline: auto; padding-inline: var(--gutter); }
+.section { padding-block: clamp(64px, 5vw + 40px, 112px); scroll-margin-top: var(--header-h); }
+.section-head { max-width: 720px; margin-bottom: clamp(32px, 3vw + 16px, 52px); }
+.section-head h2 { text-wrap: balance; }
+.section-head p { color: var(--grey); font-size: 1.0625rem; margin: 14px 0 0; }
+.eyebrow {
+  font-family: var(--sans); font-size: .78rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--gold-deep); margin: 0 0 14px;
+}
+.on-dark .eyebrow { color: var(--gold); }
+.accent { font-style: italic; color: var(--gold-deep); }
+.on-dark .accent { color: var(--gold); }
+
+.skip-link {
+  position: absolute; left: 12px; top: -60px; z-index: 100;
+  background: var(--ink); color: var(--cream); padding: 10px 16px; border-radius: 10px; text-decoration: none; font-weight: 600;
+}
+.skip-link:focus { top: 12px; }
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 44px; padding: 10px 18px; border-radius: 14px; border: 1px solid transparent;
+  font: 600 .95rem/1.2 var(--sans); text-decoration: none; cursor: pointer;
+  transition: transform .15s ease, box-shadow .2s ease, background-color .2s ease;
+}
+.btn-primary {
+  color: #FFF8EF;
+  background: linear-gradient(180deg, #7C1C29 0%, var(--maroon) 55%, #5A111B 100%);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .12) inset, 0 8px 20px rgba(107, 21, 32, .28);
+}
+.btn-primary:hover { box-shadow: 0 1px 0 rgba(255, 255, 255, .12) inset, 0 12px 28px rgba(107, 21, 32, .36); transform: translateY(-1px); }
+.btn-primary:active { transform: translateY(0) scale(.985); }
+.btn-lg { min-height: 60px; padding: 14px 28px; border-radius: 16px; font: 500 1.2rem/1.2 var(--serif); letter-spacing: .005em; }
+.btn-lg .icon { width: 22px; height: 22px; stroke-width: 2; }
+.btn-ghost { background: transparent; border-color: var(--border); color: var(--ink); }
+.btn-ghost:hover { background: var(--card); }
+
+/* ---------- Header ---------- */
+.site-header {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(244, 237, 228, .88);
+  -webkit-backdrop-filter: saturate(140%) blur(12px);
+  backdrop-filter: saturate(140%) blur(12px);
+  border-bottom: 1px solid rgba(232, 221, 207, .9);
+}
+.site-header .container { display: flex; align-items: center; gap: 16px; height: var(--header-h); }
+.brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; margin-right: auto; }
+.brand img { width: 32px; height: 32px; }
+.wordmark { font-family: var(--serif); font-size: 1.05rem; letter-spacing: .38em; margin-right: -.38em; }
+.site-nav { display: none; }
+.site-nav ul { display: flex; gap: 4px; list-style: none; margin: 0; padding: 0; }
+.site-nav a { display: block; padding: 8px 12px; border-radius: 10px; text-decoration: none; font-size: .92rem; font-weight: 500; color: var(--grey); }
+.site-nav a:hover { color: var(--ink); background: rgba(255, 255, 255, .55); }
+.header-cta { min-height: 40px; padding: 8px 14px; font-size: .88rem; border-radius: 12px; }
+.header-cta .icon { width: 18px; height: 18px; stroke-width: 2; }
+@media (min-width: 900px) { .site-nav { display: block; } }
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative; overflow: hidden;
+  background:
+    radial-gradient(900px 520px at 78% 38%, rgba(255, 255, 255, .7), transparent 70%),
+    radial-gradient(700px 420px at 8% 0%, rgba(232, 214, 190, .55), transparent 70%),
+    var(--cream);
+  padding-block: clamp(36px, 4vw + 20px, 88px) clamp(48px, 4vw + 24px, 96px);
+}
+.hero-grid { display: grid; gap: 48px; align-items: center; }
+.hero-copy { max-width: 560px; }
+.app-icon { width: 88px; height: 88px; border-radius: 50%; box-shadow: 0 10px 30px rgba(78, 14, 22, .28); margin-bottom: 24px; }
+.hero .eyebrow { display: flex; align-items: center; gap: 12px; white-space: nowrap; }
+.hero .eyebrow::after { content: ""; height: 1px; flex: 0 1 48px; min-width: 12px; background: var(--gold); }
+.hero h1 { font-size: clamp(3.4rem, 2.2rem + 6vw, 6rem); line-height: .95; letter-spacing: -0.02em; margin-bottom: 18px; }
+.hero-sub { font-family: var(--serif); font-size: clamp(1.35rem, 1.1rem + 1vw, 1.75rem); line-height: 1.3; margin: 0 0 16px; }
+.hero-lede { color: var(--grey); font-size: 1.0625rem; max-width: 34em; margin-bottom: 28px; }
+.cta { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
+.apk-meta { font-size: .92rem; color: var(--grey); margin: 0; font-variant-numeric: tabular-nums; }
+.apk-meta .sep { color: var(--gold-deep); }
+.link-arrow { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; color: var(--maroon); text-decoration: none; padding: 6px 0; }
+.link-arrow .icon { width: 18px; height: 18px; transition: transform .2s ease; }
+.link-arrow:hover { text-decoration: underline; text-underline-offset: 4px; }
+.link-arrow:hover .icon { transform: translateX(3px); }
+.cta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 20px; }
+
+.notice {
+  display: flex; gap: 12px; align-items: flex-start; margin-top: 24px; padding: 14px 16px;
+  background: var(--card); border: 1px solid var(--border); border-left: 4px solid var(--maroon); border-radius: 14px;
+  font-size: .95rem; max-width: 34em;
+}
+.notice .icon { color: var(--maroon); margin-top: 2px; }
+.notice p { margin: 0; }
+
+.qr-card {
+  display: none; align-items: center; gap: 18px; margin-top: 32px; padding: 14px 20px 14px 14px;
+  background: #fff; border: 1px solid var(--border); border-radius: 18px; box-shadow: var(--shadow-sm); width: fit-content;
+}
+.qr-card .qr { width: 128px; height: 128px; flex: none; }
+.qr-card .qr svg { width: 100%; height: 100%; }
+.qr-card p { margin: 0; font-size: .92rem; color: var(--grey); max-width: 15em; }
+.qr-card strong { display: block; font-family: var(--serif); font-weight: 500; font-size: 1.1rem; color: var(--ink); margin-bottom: 2px; }
+@media (min-width: 900px) { .qr-card:not([hidden]) { display: flex; } }
+
+.hero-visual { position: relative; display: grid; place-items: center; }
+/* A soft "stage" disc with a thin gold ring behind the phones, echoing the app icon. */
+.hero-visual::before, .hero-visual::after {
+  content: ""; position: absolute; top: 50%; left: 50%; aspect-ratio: 1; border-radius: 50%; pointer-events: none; z-index: 0;
+}
+.hero-visual::before {
+  width: min(135%, 640px); transform: translate(-50%, -50%);
+  background: radial-gradient(circle at 50% 50%, #E8D8C3 0%, #EEE2D3 48%, rgba(238, 226, 211, 0) 70%);
+}
+.hero-visual::after {
+  width: min(118%, 540px); transform: translate(-50%, -50%);
+  border: 1px solid rgba(198, 160, 106, .75);
+}
+.phones { position: relative; z-index: 1; display: grid; width: min(100%, 440px); }
+.phone { grid-area: 1 / 1; filter: drop-shadow(0 22px 26px rgba(40, 22, 18, .22)) drop-shadow(0 4px 6px rgba(40, 22, 18, .12)); }
+.phone-front { width: 63%; justify-self: end; z-index: 2; }
+.phone-back { width: 55%; justify-self: start; align-self: start; margin-top: 13%; transform: rotate(-6deg); transform-origin: 60% 80%; }
+
+@media (min-width: 900px) {
+  .hero-grid { grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: 32px; }
+  .app-icon { width: 104px; height: 104px; }
+}
+@media (max-width: 899px) {
+  .hero-copy { margin-inline: auto; text-align: center; }
+  .hero .eyebrow { justify-content: center; }
+  .hero .eyebrow::before { content: ""; height: 1px; flex: 0 1 48px; min-width: 12px; background: var(--gold); }
+  .app-icon { margin-inline: auto; }
+  .hero-lede { margin-inline: auto; }
+  .cta { align-items: center; }
+  .cta-row { justify-content: center; }
+  .notice { text-align: left; margin-inline: auto; }
+  .phones { width: min(90%, 340px); }
+}
+@media (max-width: 420px) { .btn-lg { width: 100%; } }
+
+/* ---------- Highlights ---------- */
+.highlights { border-block: 1px solid var(--border); background: var(--cream-light); }
+.highlights ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.highlights li { display: flex; align-items: center; gap: 12px; padding: 18px 8px; font-weight: 600; font-size: .95rem; line-height: 1.3; }
+.highlights .icon { color: var(--maroon); width: 22px; height: 22px; }
+.highlights li span { display: block; font-weight: 400; color: var(--grey); font-size: .85rem; }
+@media (min-width: 900px) {
+  .highlights ul { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .highlights li { justify-content: center; padding: 22px 12px; }
+  .highlights li + li { border-left: 1px solid var(--border); }
+}
+
+/* ---------- Screens strip ---------- */
+.screens { background: var(--cream-light); padding-bottom: clamp(48px, 4vw + 24px, 88px); }
+.screens .section-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 20px; max-width: calc(var(--max) + 2 * var(--gutter)); }
+.screens .section-head > div { max-width: 720px; }
+.strip-controls { display: none; gap: 10px; }
+.js .strip-controls:not([hidden]) { display: flex; }
+@media (hover: none) { .js .strip-controls:not([hidden]) { display: none; } }
+.round-btn {
+  width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; cursor: pointer;
+  background: var(--card); color: var(--ink); border: 1px solid var(--border); box-shadow: var(--shadow-sm);
+  transition: background-color .2s ease, opacity .2s ease;
+}
+.round-btn:hover:not(:disabled) { background: #fff; }
+.round-btn:disabled { opacity: .4; cursor: default; }
+.strip {
+  --pad: max(var(--gutter), calc((100% - var(--max)) / 2));
+  display: flex; gap: clamp(16px, 2vw, 28px); list-style: none; margin: 0;
+  padding: 8px var(--pad) 28px; scroll-padding-inline: var(--pad);
+  overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain;
+  scrollbar-width: thin; scrollbar-color: rgba(125, 94, 47, .45) transparent;
+}
+.strip::-webkit-scrollbar { height: 8px; }
+.strip::-webkit-scrollbar-thumb { background: rgba(125, 94, 47, .4); border-radius: 8px; }
+.shot { flex: 0 0 auto; width: clamp(196px, 58vw, 248px); scroll-snap-align: start; margin: 0; }
+.shot a { display: block; text-decoration: none; border-radius: 30px; }
+.shot .frame {
+  display: block; position: relative; border-radius: 30px; padding: 6px; background: var(--bezel);
+  box-shadow: 0 0 0 1px rgba(70, 62, 56, .9) inset, var(--shadow-md);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.shot img { width: 100%; border-radius: 24px; background: var(--chip); aspect-ratio: 540 / 1199; object-fit: cover; }
+.shot a:hover .frame { transform: translateY(-4px); box-shadow: 0 0 0 1px rgba(70, 62, 56, .9) inset, 0 4px 10px rgba(40, 22, 18, .1), 0 26px 48px rgba(40, 22, 18, .18); }
+.shot figcaption { padding: 16px 4px 0; }
+.shot .num { display: block; font-size: .75rem; font-weight: 700; letter-spacing: .18em; color: var(--gold-deep); margin-bottom: 2px; }
+.shot .title { display: block; font-family: var(--serif); font-size: 1.15rem; line-height: 1.25; }
+.shot .desc { display: block; font-size: .88rem; color: var(--grey); line-height: 1.45; margin-top: 4px; }
+.strip-hint { color: var(--grey); font-size: .88rem; margin: 0; padding-inline: var(--gutter); text-align: center; }
+@media (hover: hover) { .strip-hint { display: none; } }
+
+/* ---------- Lightbox ---------- */
+.lightbox {
+  border: 0; padding: 0; margin: 0; width: 100%; height: 100%; max-width: none; max-height: none;
+  background: rgba(19, 13, 10, .9); color: var(--cream); overflow: hidden;
+}
+.lightbox::backdrop { background: rgba(19, 13, 10, .6); }
+.lightbox[open] { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; grid-template-rows: minmax(0, 1fr); align-items: center; }
+.lb-figure { grid-column: 2; margin: 0; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 56px 8px 20px; min-height: 0; }
+.lb-figure img { max-height: calc(100% - 64px); max-width: 100%; width: auto; border-radius: 22px; box-shadow: 0 0 0 5px var(--bezel), 0 30px 80px rgba(0, 0, 0, .5); background: var(--bezel); }
+.lb-figure figcaption { text-align: center; max-width: 36em; font-size: .95rem; color: #E9DFD2; padding-inline: 8px; }
+.lb-figure figcaption strong { font-family: var(--serif); font-weight: 500; font-size: 1.15rem; color: #fff; display: block; }
+.lb-btn {
+  width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; cursor: pointer;
+  background: rgba(255, 255, 255, .1); color: #fff; border: 1px solid rgba(255, 255, 255, .22);
+  margin: 0 clamp(4px, 2vw, 24px);
+}
+.lb-btn:hover { background: rgba(255, 255, 255, .2); }
+.lb-close { position: absolute; top: 12px; right: 12px; margin: 0; z-index: 2; }
+.lb-count { position: absolute; top: 24px; left: 20px; font-size: .85rem; letter-spacing: .12em; color: #CFC3B5; font-variant-numeric: tabular-nums; }
+@media (max-width: 599px) {
+  .lightbox[open] { grid-template-columns: minmax(0, 1fr); }
+  .lb-figure { grid-column: 1; grid-row: 1; padding: 64px 12px 84px; }
+  .lb-prev, .lb-next { position: absolute; bottom: 18px; margin: 0; }
+  .lb-prev { left: calc(50% - 60px); }
+  .lb-next { right: calc(50% - 60px); }
+}
+html.lb-open { overflow: hidden; }
+
+/* ---------- Features ---------- */
+.grid { display: grid; gap: 20px; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 640px) { .grid-2, .grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1024px) { .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 26px 24px 24px; }
+.bubble { width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; background: var(--maroon-soft); color: var(--maroon); margin-bottom: 18px; }
+.card h3 { margin-bottom: 12px; }
+.ticks { list-style: none; margin: 0; padding: 0; display: grid; gap: 9px; }
+.ticks li { position: relative; padding-left: 20px; color: var(--grey); font-size: .95rem; line-height: 1.5; }
+.ticks li::before { content: ""; position: absolute; left: 0; top: calc(.75em - 1px); width: 9px; height: 2px; border-radius: 1px; background: var(--gold); }
+.ticks strong { color: var(--ink); font-weight: 600; }
+/* Small screens: icon beside the title, so the stacked cards stay short. */
+@media (max-width: 639px) {
+  .card { display: grid; grid-template-columns: 44px minmax(0, 1fr); column-gap: 14px; align-items: center; padding: 20px 20px 22px; }
+  .card .bubble { width: 44px; height: 44px; margin: 0; }
+  .card h3 { margin: 0; }
+  .card > :not(.bubble):not(h3) { grid-column: 1 / -1; }
+  .grid > .card > .ticks, .grid > .card > h3 + p { margin-top: 14px; }
+}
+
+/* ---------- Try these (dark) ---------- */
+.try {
+  color: #EFE6DA;
+  background:
+    radial-gradient(800px 400px at 85% 0%, rgba(107, 21, 32, .55), transparent 70%),
+    radial-gradient(600px 400px at 0% 100%, rgba(78, 14, 22, .45), transparent 70%),
+    var(--dark);
+}
+.try h2 { color: #FBF6EE; }
+.try .section-head p { color: #CBBFB1; }
+.tips { list-style: none; margin: 0; padding: 0; counter-reset: tip; }
+.tip {
+  position: relative; display: flex; flex-direction: column; gap: 10px;
+  background: rgba(255, 255, 255, .035); border: 1px solid rgba(198, 160, 106, .28); border-radius: var(--radius); padding: 24px;
+}
+.tip-head { display: flex; align-items: center; gap: 14px; }
+.tip-head .icon { color: var(--gold); width: 26px; height: 26px; }
+.tip-num { margin-left: auto; font-family: var(--serif); font-style: italic; font-size: 1.6rem; line-height: 1; color: rgba(198, 160, 106, .55); }
+.tip h3 { color: #FBF6EE; font-size: 1.25rem; }
+.tip p { margin: 0; color: #CBBFB1; font-size: .95rem; }
+.tip .path { color: #EFE6DA; font-weight: 600; }
+.code-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 6px; }
+.code {
+  display: inline-block; font-family: var(--mono); font-size: 1.05rem; letter-spacing: .08em; color: #FBF6EE;
+  padding: 6px 12px; border-radius: 10px; border: 1px solid rgba(198, 160, 106, .6); background: rgba(198, 160, 106, .1);
+}
+.copy-btn {
+  display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 6px 12px; border-radius: 10px; cursor: pointer;
+  font: 600 .82rem/1 var(--sans); color: inherit; background: transparent; border: 1px solid currentColor; opacity: .85;
+}
+.copy-btn:hover { opacity: 1; }
+.copy-btn .icon { width: 16px; height: 16px; }
+@media (min-width: 640px) { .tips { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1024px) {
+  .tips { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .tip { grid-column: span 2; }
+  .tip:nth-child(4) { grid-column: 2 / span 2; }
+}
+@media (min-width: 640px) and (max-width: 1023px) { .tip:last-child { grid-column: 1 / -1; } }
+
+/* ---------- Install ---------- */
+.install-grid { display: grid; gap: 40px; }
+@media (min-width: 1024px) { .install-grid { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 56px; align-items: start; } }
+.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+.step { position: relative; display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 18px; padding-bottom: 28px; }
+.step:last-child { padding-bottom: 0; }
+.step::before { content: ""; position: absolute; left: 27px; top: 60px; bottom: 4px; width: 2px; background: linear-gradient(var(--border), var(--border)); }
+.step:last-child::before { display: none; }
+.step-icon { position: relative; width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; background: var(--card); border: 1px solid var(--border); color: var(--maroon); box-shadow: var(--shadow-sm); }
+.step-icon b { position: absolute; top: -4px; right: -4px; width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; background: var(--maroon); color: #FFF8EF; font: 700 .75rem/1 var(--sans); }
+.step h3 { font-size: 1.25rem; padding-top: 6px; margin-bottom: 6px; }
+.step p { color: var(--grey); margin: 0; }
+.step p + p { margin-top: 8px; }
+.ui { font-weight: 600; color: var(--ink); white-space: nowrap; }
+.side-stack { display: grid; gap: 20px; }
+.callout { border-radius: var(--radius); padding: 22px 22px 20px; border: 1px solid var(--border); background: var(--card); }
+.callout h3 { display: flex; align-items: center; gap: 10px; font-size: 1.2rem; margin-bottom: 10px; }
+.callout h3 .icon { color: var(--maroon); }
+.callout p { color: var(--grey); margin: 0; font-size: .95rem; }
+.callout p + p, .callout ul { margin-top: 10px; }
+.callout-strong { background: var(--maroon); border-color: var(--maroon); color: #F6EADF; }
+.callout-strong h3, .callout-strong h3 .icon { color: #fff; }
+.callout-strong p { color: #EBD9CC; }
+.callout-strong a { color: #fff; }
+
+/* ---------- Privacy ---------- */
+.privacy { background: var(--cream-light); border-top: 1px solid var(--border); }
+.grid-4 { grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 640px) { .grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1100px) { .grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.privacy .card p { color: var(--grey); font-size: .95rem; margin: 0; }
+.privacy .card p + p { margin-top: 10px; }
+.footnote { font-size: .85rem !important; }
+.checksum { margin-top: 20px; display: grid; gap: 12px; padding: 20px 24px; border-radius: var(--radius); background: #fff; border: 1px solid var(--border); }
+.checksum-head { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; }
+.checksum-head h3 { font-size: 1.15rem; display: flex; align-items: center; gap: 10px; margin-right: auto; }
+.checksum-head h3 .icon { color: var(--maroon); }
+.checksum code { display: block; font-size: .9rem; line-height: 1.5; word-break: break-all; color: var(--ink); background: var(--cream-light); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; }
+.checksum .copy-btn { color: var(--maroon); }
+.checksum details { font-size: .9rem; color: var(--grey); }
+.checksum summary { cursor: pointer; font-weight: 600; color: var(--ink); width: fit-content; }
+.checksum details code { display: inline; padding: 1px 6px; font-size: .85rem; word-break: break-word; }
+.checksum details p { margin: 8px 0 0; }
+
+/* ---------- Disclaimer ---------- */
+.disclaimer { padding-block: clamp(48px, 4vw + 24px, 80px); }
+.disclaimer-box { display: grid; gap: 20px; border: 1px solid var(--border); border-radius: var(--radius); padding: clamp(22px, 3vw, 36px); background: var(--card); }
+@media (min-width: 900px) { .disclaimer-box { grid-template-columns: auto minmax(0, 1fr); gap: 32px; } }
+.age-badge { width: 72px; height: 72px; border-radius: 50%; display: grid; place-items: center; border: 1.5px solid var(--maroon); color: var(--maroon); font: 600 1.35rem/1 var(--serif); }
+@media (max-width: 899px) { .age-badge { width: 56px; height: 56px; font-size: 1.1rem; } }
+.disclaimer-box > div { max-width: 76ch; }
+.disclaimer h2 { font-size: clamp(1.5rem, 1.2rem + 1vw, 1.9rem); margin-bottom: 14px; }
+.disclaimer p { color: var(--grey); font-size: .95rem; margin-bottom: .8em; }
+.disclaimer p:last-child { margin-bottom: 0; }
+.disclaimer strong { color: var(--ink); font-weight: 600; }
+
+/* ---------- Footer ---------- */
+.site-footer { background: var(--ink); color: #CFC4B7; padding-block: 44px 40px; font-size: .92rem; }
+.site-footer .container { display: grid; gap: 22px; }
+@media (min-width: 900px) { .site-footer .container { grid-template-columns: minmax(0, 1fr) auto; align-items: center; } }
+.footer-brand { display: flex; align-items: center; gap: 14px; }
+.footer-brand img { width: 44px; height: 44px; }
+.footer-brand .wordmark { color: #FBF6EE; font-size: 1.15rem; }
+.footer-brand small { display: block; font-size: .72rem; letter-spacing: .28em; color: var(--gold); margin-top: 2px; }
+.site-footer p { margin: 0; }
+.footer-links { display: flex; flex-wrap: wrap; gap: 6px 20px; list-style: none; margin: 0; padding: 0; }
+.footer-links a { color: #EFE6DA; text-decoration: none; padding: 4px 0; display: inline-block; }
+.footer-links a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.footer-meta { grid-column: 1 / -1; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; padding-top: 22px; border-top: 1px solid rgba(255, 255, 255, .1); color: #A99D90; font-size: .85rem; }
+
+.nowrap { white-space: nowrap; }
+.visually-hidden { position: absolute !important; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
+}
+@media print {
+  .site-header, .strip-controls, .qr-card, .copy-btn, .lightbox { display: none !important; }
+  .strip { flex-wrap: wrap; overflow: visible; }
+}
+</style>
+</head>
+<body>
+<!-- Icon sprite (decorative; each use is aria-hidden) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3.5v11.5"/><path d="m6.8 10 5.2 5.2 5.2-5.2"/><path d="M4.5 19.5h15"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13.5h6M9 17h4"/></symbol>
+  <symbol id="i-toggle" viewBox="0 0 24 24"><rect x="2.5" y="7.5" width="19" height="9" rx="4.5"/><circle cx="16.5" cy="12" r="2.4"/></symbol>
+  <symbol id="i-install" viewBox="0 0 24 24"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="m9.4 12.2 1.9 1.9 3.4-3.9"/><path d="M10.5 18.5h3"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 5 6v5.2c0 4.4 3 8.4 7 9.8 4-1.4 7-5.4 7-9.8V6z"/><path d="m9.3 12 2 2 3.6-4"/></symbol>
+  <symbol id="i-id" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><circle cx="9" cy="10.8" r="2"/><path d="M6 16c.6-1.4 1.7-2.1 3-2.1s2.4.7 3 2.1"/><path d="M14.5 10h3.5M14.5 13.5h2.5"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.6"/><path d="M5 20.5c.8-3.7 3.6-5.7 7-5.7s6.2 2 7 5.7"/></symbol>
+  <symbol id="i-bottle" viewBox="0 0 24 24"><path d="M10 2.5h4"/><path d="M10.5 2.5v4.2c0 .6-.3 1.1-.8 1.5C8.6 9 8 10.2 8 11.6V20a1.5 1.5 0 0 0 1.5 1.5h5A1.5 1.5 0 0 0 16 20v-8.4c0-1.4-.6-2.6-1.7-3.4-.5-.4-.8-.9-.8-1.5V2.5"/><path d="M8 13.5h8v4H8z"/></symbol>
+  <symbol id="i-bag" viewBox="0 0 24 24"><path d="M5.5 7.5h13l-1 13h-11z"/><path d="M9 10V6.5a3 3 0 0 1 6 0V10"/></symbol>
+  <symbol id="i-truck" viewBox="0 0 24 24"><path d="M2.5 6.5h11.5v9.5"/><path d="M14 9.5h3.8l3.2 3.6v3.4h-1.7"/><path d="M2.5 6.5v10h2.2M9 16.5h6.2"/><circle cx="6.8" cy="17" r="1.9"/><circle cx="17.3" cy="17" r="1.9"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9.5L4 20z"/><path d="M8 9.3h8M8 12.3h5"/></symbol>
+  <symbol id="i-offline" viewBox="0 0 24 24"><path d="M3 3l18 18"/><path d="M8.8 16.2a4.8 4.8 0 0 1 6.4 0"/><path d="M5.2 12.6a10 10 0 0 1 4-2.3M14.2 10.1a10 10 0 0 1 4.6 2.5"/><path d="M2 9a15 15 0 0 1 4.6-2.9M10.8 5a15 15 0 0 1 11.2 4"/><circle cx="12" cy="19.6" r=".6"/></symbol>
+  <symbol id="i-eye-off" viewBox="0 0 24 24"><path d="M3 3l18 18"/><path d="M10.6 6.1c.5-.1.9-.1 1.4-.1 5 0 8.5 4.5 9.5 6-.5.8-1.6 2.2-3.1 3.5M6.6 6.6C4.4 8 2.9 10.6 2.5 12c1 1.5 4.5 6 9.5 6 1.6 0 3-.4 4.3-1.1"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/></symbol>
+  <symbol id="i-tag" viewBox="0 0 24 24"><path d="M3.5 11.5V4.5a1 1 0 0 1 1-1h7l9 9-8 8z"/><circle cx="8" cy="8" r="1.6"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/><path d="M12 14.5v2"/></symbol>
+  <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16"/><path d="M6.5 7l1 13h9l1-13"/><path d="M9.5 7V4h5v3M10 11v5.5M14 11v5.5"/></symbol>
+  <symbol id="i-hash" viewBox="0 0 24 24"><path d="M5 9h15M4 15h15M10.5 3.5 8.5 20.5M15.5 3.5l-2 17"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8.5" y="8.5" width="11.5" height="11.5" rx="2"/><path d="M15.5 8.5V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v9.5a1 1 0 0 0 1 1h3.5"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-left" viewBox="0 0 24 24"><path d="m14.5 6-6 6 6 6"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24"><path d="m9.5 6 6 6-6 6"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M10.5 18.5h3"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5M12 7.6v.1"/></symbol>
+  <symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="m11 12 9-9M16.5 6.5l2 2M14.5 8.5l2 2"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></symbol>
+  <symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14.5 6.5a4 4 0 0 0 5 5L12 19a2.1 2.1 0 0 1-3-3z"/><path d="M14.5 6.5 17 4l3 3-2.5 2.5"/></symbol>
+</svg>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="#top" aria-label="Reserve, back to top">
+      <img src="assets/favicon.png" width="32" height="32" alt="">
+      <span class="wordmark" aria-hidden="true">RESERVE</span>
+    </a>
+    <nav class="site-nav" aria-label="Page sections">
+      <ul>
+        <li><a href="#screens">Screens</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#try">Try it</a></li>
+        <li><a href="#install">Install</a></li>
+        <li><a href="#privacy">Privacy</a></li>
+      </ul>
+    </nav>
+    <!-- APK LINK (1 of 4). All 4 links marked data-apk-link (header, main button, install step 1, footer)
+         must point at the same file. See the note on the main "Download for Android" button below. -->
+    <a class="btn btn-primary header-cta" href="https://github.com/Noopur-design/reserve/releases/latest/download/Reserve.apk" download data-apk-link>
+      <svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>Download
+    </a>
+  </div>
+</header>
+
+<main id="main">
+  <!-- ================= HERO ================= -->
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <img class="app-icon" src="assets/icon-512.png" width="512" height="512" alt="Reserve app icon: a cream serif R in a gold ring on maroon">
+        <p class="eyebrow">Spirits · Wine · Beyond</p>
+        <h1 id="hero-title">Reserve</h1>
+        <p class="hero-sub">Premium liquor shopping, <span class="accent">beautifully done.</span></p>
+        <p class="hero-lede">A free Android demo of a luxury liquor store for India. Browse a curated cellar, check out in three steps and watch a simulated delivery, all offline on sample data.</p>
+
+        <div class="cta">
+          <!-- APK LINK (2 of 4): the main one. There are 4 links marked data-apk-link: the header button,
+               this button, install step 1 and the footer. To host the APK elsewhere (e.g. GitHub Releases),
+               use Replace All on the local Reserve.apk links so all 4 change (HOSTING.md, Option 1, Step 4).
+               Safety net: the script at the bottom also copies this button's href to the other 3 links,
+               and the QR code, size check and checksum all follow this link. -->
+          <a class="btn btn-primary btn-lg" id="download-btn" href="https://github.com/Noopur-design/reserve/releases/latest/download/Reserve.apk" download data-apk-link
+             type="application/vnd.android.package-archive">
+            <svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>
+            Download for Android
+          </a>
+          <!-- APK DETAILS: edit these three values when you upload a new build (the version also appears in the footer).
+               Size = bytes / 1,048,576, one decimal, as Chrome's download list shows it. Reserve.apk 1.0.0 is
+               55,517,683 bytes = 52.9 MB. If the APK is on this same site, the page reads the real size by itself. -->
+          <p class="apk-meta">Version <span id="apk-version" data-apk-version>1.0.0</span> <span class="sep" aria-hidden="true">·</span> <span id="apk-size" data-apk-size>52.9 MB</span> <span class="sep" aria-hidden="true">·</span> <span id="apk-min-android" data-apk-min-android>Android 7.0+</span></p>
+          <div class="cta-row">
+            <a class="link-arrow" href="#install">How to install<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            <a class="link-arrow" href="#screens">See the screens<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </div>
+        </div>
+
+        <div class="notice" id="ios-note" role="note" hidden>
+          <svg class="icon" aria-hidden="true"><use href="#i-info"/></svg>
+          <p><strong>On an iPhone or iPad?</strong> APK files only install on Android, so this download won't work here. You can still browse the screens below, or open this page on an Android phone.</p>
+        </div>
+
+        <div class="qr-card" id="qr-card" hidden>
+          <div class="qr" id="qr" role="img" aria-label="QR code that opens the APK download"></div>
+          <p><strong>On a computer?</strong>Scan with your Android phone's camera to download the app straight to it.</p>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="phones">
+          <img class="phone phone-back" src="assets/phone-product.webp" width="631" height="1363"
+               alt="Product page for The Macallan Double Cask 18 with its price, rating and an Add to Cart bar."
+               decoding="async">
+          <img class="phone phone-front" src="assets/phone-home.webp" width="631" height="1363"
+               alt="Reserve home screen: the RESERVE wordmark, a hero photo of bottles with &quot;Pour something memorable.&quot; and category thumbnails."
+               fetchpriority="high">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="highlights" aria-label="At a glance">
+    <div class="container">
+      <ul>
+        <li><svg class="icon" aria-hidden="true"><use href="#i-tag"/></svg><div>Free to try<span>Browse as a guest, no payment</span></div></li>
+        <li><svg class="icon" aria-hidden="true"><use href="#i-offline"/></svg><div>Works offline<span>Runs on sample data</span></div></li>
+        <li><svg class="icon" aria-hidden="true"><use href="#i-eye-off"/></svg><div>No ads or tracking<span>Nothing leaves your phone</span></div></li>
+        <li><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg><div>Android 7.0+<span>Phones and tablets</span></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================= SCREENS ================= -->
+  <section class="section screens" id="screens" aria-labelledby="screens-title">
+    <div class="container section-head">
+      <div>
+        <p class="eyebrow">Inside the app</p>
+        <h2 id="screens-title">Take a look <span class="accent">around.</span></h2>
+        <p>Real screens from the app, from the first launch to a delivered order. Tap any screen to see it larger.</p>
+      </div>
+      <div class="strip-controls" id="strip-controls" hidden>
+        <button class="round-btn" type="button" data-strip="prev" aria-controls="strip" aria-label="Scroll to previous screens"><svg class="icon" aria-hidden="true"><use href="#i-left"/></svg></button>
+        <button class="round-btn" type="button" data-strip="next" aria-controls="strip" aria-label="Scroll to next screens"><svg class="icon" aria-hidden="true"><use href="#i-right"/></svg></button>
+      </div>
+    </div>
+
+    <ul class="strip" id="strip" aria-label="App screenshots">
+      <li><figure class="shot">
+        <a href="assets/screens/01-onboarding.webp" class="shot-link"><span class="frame"><img src="assets/screens/01-onboarding-thumb.webp" width="540" height="1199" loading="lazy" decoding="async" alt="Onboarding intro: a whisky bottle and glass in low light under the RESERVE wordmark, with &quot;Good taste deserves a better experience.&quot;"></span></a>
+        <figcaption><span class="num">01</span><span class="title">Onboarding</span><span class="desc">A three-step intro that ends at the 18+ age gate.</span></figcaption>
+      </figure></li>
+      <li><figure class="shot">
+        <a href="assets/screens/05-home.webp" class="shot-link"><span class="frame"><img src="assets/screens/05-home-thumb.webp" width="540" height="1199" loading="lazy" decoding="async" alt="Home screen: initials avatar, RESERVE wordmark delivering to Gurugram, a bottle hero with &quot;Pour something memorable.&quot; and category thumbnails."></span></a>
+        <figcaption><span class="num">02</span><span class="title">Home</span><span class="desc">Hero, categories and a curated carousel.</span></figcaption>
+      </figure></li>
+      <li><figure class="shot">
+        <a href="assets/screens/07-category.webp" class="shot-link"><span class="frame"><img src="assets/screens/07-category-thumb.webp" width="540" height="1199" loading="lazy" decoding="async" alt="Whisky listing: a dark photo header, Filter, Sort and Brand pills, and a two-column grid of bottles with prices."></span></a>
+        <figcaption><span class="num">03</span><span class="title">Category listing</span><span class="desc">Filter, sort, brand and price-range controls.</span></figcaption>
+      </figure></li>
+      <li><figure class="shot">
+        <a href="assets/screens/08-product.webp" class="shot-link"><span class="frame"><img src="assets/screens/08-product-thumb.webp" width="540" height="1199" loading="lazy" decoding="async" alt="Product page for The Macallan Double Cask 18: bottle photo, 4.8 star rating, ₹9,499 In Stock with a quantity stepper and a maroon Add to Cart bar."></span></a>
+        <figcaption><span class="num">04</span><span class="title">Product detail</span><span class="desc">Swipeable bottle photos, tasting notes and Add to Cart.</span></figcaption>
+      </figure></li>
+      <li><figure class="shot">
+        <a href="assets/screens/09-cart.webp" class="shot-link"><span class="frame"><img src="assets/screens/09-cart-thumb.webp" width="540" height="1199" loading="lazy" decoding="async" alt="Cart with two bottles, quantity steppers, a special instructions row, an order summary and a Proceed to Checkout bar."></span></a>
+        <figcaption><span class="num">05</span><span class="title">Cart</span><span class="desc">Steppers, swipe to delete with Undo, order summary.</span></figcaption>
+      </figure></li>
+      <li><figure class="shot">
+        <a href="assets/screens/10-checkout.webp" class="shot-link"><span class="frame"><img src="assets/screens/10-checkout-thumb.webp" width="540" height="1199" loading="lazy" decoding="async" alt="Checkout step 3 of 3: UPI selected among card, net banking and wallets, with an 18+ confirmation and a ₹8,590 Place Order bar."></span></a>
+        <figcaption><span class="num">06</span><span class="title">Checkout</span><span class="desc">Address, delivery and payment in three steps.</span></figcaption>
+      </figure></li>
+      <li><figure class="shot">
+        <a href="assets/screens/11-tracking.webp" class="shot-link"><span class="frame"><img src="assets/screens/11-tracking-thumb.webp" width="540" height="1199" loading="lazy" decoding="async" alt="Order tracking: Confirmed, Packed and Out for Delivery steps reached, a map with a delivery van, the arrival time and the delivery partner card."></span></a>
+        <figcaption><span class="num">07</span><span class="title">Order tracking</span><span class="desc">A simulated delivery, animated on your phone.</span></figcaption>
+      </figure></li>
+      <li><figure class="shot">
+        <a href="assets/screens/16-help.webp" class="shot-link"><span class="frame"><img src="assets/screens/16-help-thumb.webp" width="540" height="1199" loading="lazy" decoding="async" alt="Help &amp; Support: a search field, a &quot;Need help?&quot; card with a Contact Support button, and a grid of topic tiles."></span></a>
+        <figcaption><span class="num">08</span><span class="title">Help &amp; Support</span><span class="desc">FAQs and a scripted chat assistant.</span></figcaption>
+      </figure></li>
+    </ul>
+    <p class="strip-hint" aria-hidden="true">Swipe for more screens →</p>
+  </section>
+
+  <!-- ================= FEATURES ================= -->
+  <section class="section" id="features" aria-labelledby="features-title">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">What's inside</p>
+        <h2 id="features-title">A complete store, <span class="accent">in your pocket.</span></h2>
+        <p>Full shopping flows from onboarding to a delivered order, built in Flutter from 26 high-fidelity concept screens.</p>
+      </div>
+      <div class="grid grid-3">
+        <article class="card">
+          <div class="bubble"><svg class="icon" aria-hidden="true"><use href="#i-id"/></svg></div>
+          <h3>Onboarding &amp; 18+ gate</h3>
+          <ul class="ticks">
+            <li>A three-step intro with a category explorer, ending at an 18+ age gate that Skip can't jump past.</li>
+            <li>Pick a delivery city from 12 demo cities, by search or photo tiles.</li>
+            <li>Your onboarding and city are remembered between launches.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <div class="bubble"><svg class="icon" aria-hidden="true"><use href="#i-user"/></svg></div>
+          <h3>Accounts &amp; guest mode</h3>
+          <ul class="ticks">
+            <li>Create an account with a +91 mobile number and a password, stored only on your phone.</li>
+            <li>Browse, search and fill a cart and wishlist as a guest; sign in only to check out.</li>
+            <li>A forgot-password flow with a demo one-time code (no SMS is sent).</li>
+          </ul>
+        </article>
+        <article class="card">
+          <div class="bubble"><svg class="icon" aria-hidden="true"><use href="#i-bottle"/></svg></div>
+          <h3>Shopping</h3>
+          <ul class="ticks">
+            <li>22 products in 8 categories, priced in rupees with Indian digit grouping (₹1,23,456).</li>
+            <li>Recent and trending searches, live results, filters, sort, brands and a price slider.</li>
+            <li>Product pages with swipeable bottle photos, tasting notes and a quantity stepper.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <div class="bubble"><svg class="icon" aria-hidden="true"><use href="#i-bag"/></svg></div>
+          <h3>Cart &amp; 3-step checkout</h3>
+          <ul class="ticks">
+            <li>Quantity steppers, swipe to delete with Undo, special instructions and an order summary.</li>
+            <li>Address, then Standard, Scheduled or Store Pickup delivery, then payment.</li>
+            <li>UPI, card, net banking or wallets, all simulated: no payment is ever taken.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <div class="bubble"><svg class="icon" aria-hidden="true"><use href="#i-truck"/></svg></div>
+          <h3>Orders &amp; tracking</h3>
+          <ul class="ticks">
+            <li>Confirmed, Packed, Out for Delivery, Delivered: tracking animated on the phone, with no courier or GPS feed.</li>
+            <li>My Orders with status tabs, search and sort, plus sample orders to explore.</li>
+            <li>Reorder, or Buy Again straight to checkout.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <div class="bubble"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg></div>
+          <h3>Profile &amp; support</h3>
+          <ul class="ticks">
+            <li>Edit your profile and add a photo through the system camera or gallery.</li>
+            <li>Saved addresses, payment methods, delivery preferences and notification settings.</li>
+            <li>Help &amp; Support with searchable FAQs and a scripted chat assistant.</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= TRY THESE ================= -->
+  <section class="section try on-dark" id="try" aria-labelledby="try-title">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Demo tips</p>
+        <h2 id="try-title">Try <span class="accent">these.</span></h2>
+        <p>Everything is sample data, so explore freely. A few things worth trying once the app is installed:</p>
+      </div>
+      <ol class="tips grid">
+        <li class="tip">
+          <div class="tip-head"><svg class="icon" aria-hidden="true"><use href="#i-user"/></svg><span class="tip-num" aria-hidden="true">01</span></div>
+          <h3>Browse as a guest</h3>
+          <p>Tap <span class="path">Skip</span> on the first screens to go straight to the store. You'll still confirm you're 18+ and pick a delivery city.</p>
+        </li>
+        <li class="tip">
+          <div class="tip-head"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg><span class="tip-num" aria-hidden="true">02</span></div>
+          <h3>Create an account</h3>
+          <p>Sign up with any 10-digit Indian mobile number and a password. The account is stored only on your phone and is never sent anywhere.</p>
+        </li>
+        <li class="tip">
+          <div class="tip-head"><svg class="icon" aria-hidden="true"><use href="#i-key"/></svg><span class="tip-num" aria-hidden="true">03</span></div>
+          <h3>Reset a password</h3>
+          <p>On Sign In, tap <span class="path">Forgot Password?</span> and use the demo code. No SMS is sent.</p>
+          <div class="code-row"><span class="code">123456</span><button class="copy-btn" type="button" data-copy="123456" hidden><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg><span>Copy</span></button></div>
+        </li>
+        <li class="tip">
+          <div class="tip-head"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg><span class="tip-num" aria-hidden="true">04</span></div>
+          <h3>Ask the chat about an order</h3>
+          <p>Signed in, open <span class="path">Profile → Help &amp; Support → Chat with Us</span>, tap Track My Order and enter this sample order number:</p>
+          <div class="code-row"><span class="code">8124092817</span><button class="copy-btn" type="button" data-copy="8124092817" hidden><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg><span>Copy</span></button></div>
+        </li>
+        <li class="tip">
+          <div class="tip-head"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg><span class="tip-num" aria-hidden="true">05</span></div>
+          <h3>Watch live tracking</h3>
+          <p>Place an order (you'll need an account), then tap Track Order. The last step animates to Delivered in about 14 seconds.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ================= INSTALL ================= -->
+  <section class="section" id="install" aria-labelledby="install-title">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">How to install</p>
+        <h2 id="install-title">Installed in <span class="accent">a minute.</span></h2>
+        <p>Reserve isn't on Google Play, so Android asks a couple of extra questions the first time. Here's what to tap.</p>
+      </div>
+      <div class="install-grid">
+        <ol class="steps">
+          <li class="step">
+            <div class="step-icon"><svg class="icon" aria-hidden="true"><use href="#i-download"/></svg><b aria-hidden="true">1</b></div>
+            <div>
+              <h3>Download the APK</h3>
+              <!-- APK LINK (3 of 4) -->
+              <p>Tap <a href="https://github.com/Noopur-design/reserve/releases/latest/download/Reserve.apk" download data-apk-link class="ui">Download for Android</a> on your phone. If your browser warns that the file might be harmful, choose <span class="ui">Download anyway</span>.</p>
+            </div>
+          </li>
+          <li class="step">
+            <div class="step-icon"><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg><b aria-hidden="true">2</b></div>
+            <div>
+              <h3>Open the file</h3>
+              <p>When the download finishes, tap <span class="ui">Open</span>, or find <span class="ui">Reserve.apk</span> in your Downloads or the Files app.</p>
+            </div>
+          </li>
+          <li class="step">
+            <div class="step-icon"><svg class="icon" aria-hidden="true"><use href="#i-toggle"/></svg><b aria-hidden="true">3</b></div>
+            <div>
+              <h3>Allow your browser to install apps</h3>
+              <p>If Android says installs from this source aren't allowed, tap <span class="ui">Settings</span>, turn on <span class="ui">Allow from this source</span> for your browser (the "Install unknown apps" setting), then go back.</p>
+              <p>On Android 7, turn on <span class="ui">Unknown sources</span> under Settings → Security instead.</p>
+            </div>
+          </li>
+          <li class="step">
+            <div class="step-icon"><svg class="icon" aria-hidden="true"><use href="#i-install"/></svg><b aria-hidden="true">4</b></div>
+            <div>
+              <h3>Tap Install</h3>
+              <p>It takes a few seconds. Then tap <span class="ui">Open</span>, or find Reserve on your home screen or in the app drawer.</p>
+            </div>
+          </li>
+          <li class="step">
+            <div class="step-icon"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg><b aria-hidden="true">5</b></div>
+            <div>
+              <h3>If Play Protect warns you</h3>
+              <p>Because Reserve isn't on the Play Store, Google Play Protect may say it hasn't seen this app before. Choose <span class="ui">More details</span> → <span class="ui">Install anyway</span>. If it offers to scan the app first, that's fine too.</p>
+            </div>
+          </li>
+        </ol>
+
+        <div class="side-stack">
+          <aside class="callout callout-strong on-dark" aria-labelledby="android-only-title">
+            <h3 id="android-only-title"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>Android only</h3>
+            <p>APK files install on Android phones and tablets running Android 7.0 or newer. They don't run on iPhone or iPad. If you're on an iPhone, you can still <a href="#screens">browse the screenshots</a>.</p>
+          </aside>
+          <aside class="callout" aria-labelledby="trouble-title">
+            <h3 id="trouble-title"><svg class="icon" aria-hidden="true"><use href="#i-wrench"/></svg>If something goes wrong</h3>
+            <ul class="ticks">
+              <li><strong>"App not installed"</strong>: uninstall any earlier Reserve build, then install again.</li>
+              <li><strong>Can't find the file</strong>: open the Files app and look in Downloads.</li>
+              <li><strong>Afterwards</strong>: you can switch "Allow from this source" back off. The app stays installed.</li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SAFETY & PRIVACY ================= -->
+  <section class="section privacy" id="privacy" aria-labelledby="privacy-title">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Safety &amp; privacy</p>
+        <h2 id="privacy-title">Your phone, <span class="accent">your data.</span></h2>
+        <p>The demo is self-contained: no servers and no cloud accounts. An account you create exists only on your phone.</p>
+      </div>
+      <div class="grid grid-4">
+        <article class="card">
+          <div class="bubble"><svg class="icon" aria-hidden="true"><use href="#i-eye-off"/></svg></div>
+          <h3>No ads, no tracking</h3>
+          <p>There are no ads, analytics or trackers in the app.</p>
+        </article>
+        <article class="card">
+          <div class="bubble"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg></div>
+          <h3>Nothing leaves your phone</h3>
+          <p>The app makes no network calls. Accounts are saved only on the device, with passwords stored as salted hashes. Carts and orders are sample data that reset when the app restarts.</p>
+          <p class="footnote">As with any app, Android's own device backup may include app data if you have backups turned on.</p>
+        </article>
+        <article class="card">
+          <div class="bubble"><svg class="icon" aria-hidden="true"><use href="#i-sliders"/></svg></div>
+          <h3>Two permissions</h3>
+          <p>Internet (declared, but unused by the demo) and vibrate. No camera, contacts, location or storage permission: profile photos go through the system camera and photo picker.</p>
+        </article>
+        <article class="card">
+          <div class="bubble"><svg class="icon" aria-hidden="true"><use href="#i-trash"/></svg></div>
+          <h3>Remove it anytime</h3>
+          <p>In Profile, tap your name to open Edit Profile. <span class="ui">Delete account</span> there removes your local profile, password hash and photo. Uninstalling removes everything.</p>
+        </article>
+      </div>
+
+      <!-- Filled in from Reserve.apk.sha256 when it's next to this page; stays hidden otherwise. -->
+      <div class="checksum" id="checksum" data-sha256-src="Reserve.apk.sha256" hidden>
+        <div class="checksum-head">
+          <h3><svg class="icon" aria-hidden="true"><use href="#i-hash"/></svg><span>Verify your download <span class="nowrap">(SHA-256)</span></span></h3>
+          <button class="copy-btn" type="button" id="copy-sha" hidden><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg><span>Copy</span></button>
+        </div>
+        <code id="sha256" translate="no"></code>
+        <details>
+          <summary>How to check it</summary>
+          <p>On a computer, compare this with the output of <code>certutil -hashfile Reserve.apk SHA256</code> (Windows) or <code>shasum -a 256 Reserve.apk</code> (macOS and Linux). If they match, the file is exactly the one published here.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= DISCLAIMER ================= -->
+  <section class="disclaimer" id="disclaimer" aria-labelledby="disclaimer-title">
+    <div class="container">
+      <div class="disclaimer-box">
+        <div class="age-badge" aria-hidden="true">18+</div>
+        <div>
+          <h2 id="disclaimer-title">Please note</h2>
+          <p><strong>Reserve is a concept and portfolio demo, not a live store.</strong> There are no real sales, payments or deliveries; orders, payments and tracking are simulated on your phone.</p>
+          <p>Product and brand names and bottle images come from AI-generated design mockups and are used for illustration only. Reserve is not affiliated with or endorsed by any brand, retailer, payment provider or delivery service shown. Prices, ratings, people, phone numbers, addresses and order numbers are fictional sample data.</p>
+          <p>Intended for adults of legal drinking age in their state or union territory. Please drink responsibly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer on-dark">
+  <div class="container">
+    <div class="footer-brand">
+      <img src="assets/favicon.png" width="44" height="44" alt="">
+      <div>
+        <span class="wordmark">RESERVE</span>
+        <small>SPIRITS · WINE · BEYOND</small>
+      </div>
+    </div>
+    <ul class="footer-links">
+      <li><!-- APK LINK (4 of 4) --><a href="https://github.com/Noopur-design/reserve/releases/latest/download/Reserve.apk" download data-apk-link>Download APK</a></li>
+      <li><a href="#install">Install help</a></li>
+      <li><a href="#privacy">Privacy</a></li>
+      <li><a href="#top">Back to top</a></li>
+    </ul>
+    <div class="footer-meta">
+      <p>Reserve <span data-apk-version>1.0.0</span> · A concept &amp; portfolio demo for Android</p>
+      <!-- Optional: add your name here, e.g. <p>Designed &amp; built by Your Name</p> -->
+      <p>Built with Flutter</p>
+    </div>
+  </div>
+</footer>
+
+<dialog class="lightbox on-dark" id="lightbox" aria-labelledby="lb-title">
+  <span class="lb-count" id="lb-count" aria-live="polite"></span>
+  <button class="lb-btn lb-close" type="button" id="lb-close" aria-label="Close"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button>
+  <button class="lb-btn lb-prev" type="button" id="lb-prev" aria-label="Previous screen"><svg class="icon" aria-hidden="true"><use href="#i-left"/></svg></button>
+  <figure class="lb-figure">
+    <img id="lb-img" src="data:," alt="">
+    <figcaption><strong id="lb-title"></strong><span id="lb-desc"></span></figcaption>
+  </figure>
+  <button class="lb-btn lb-next" type="button" id="lb-next" aria-label="Next screen"><svg class="icon" aria-hidden="true"><use href="#i-right"/></svg></button>
+</dialog>
+
+<div class="visually-hidden" aria-live="polite" id="live"></div>
+
+<!-- QR code generator (qrcode-generator 1.4.4, MIT). If it can't load, the QR box simply stays hidden. -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"
+        integrity="sha512-ZDSPMa/JM1D+7kdg2x3BsruQ6T/JpJo3jWDWkCZsP+5yVyp1KfESqLI+7RqB5k24F7p2cV7i2YHh/890y6P6Sw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+<script>
+(function () {
+  'use strict';
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  var reduceMotion = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var live = $('#live');
+  function announce(msg) { live.textContent = ''; setTimeout(function () { live.textContent = msg; }, 30); }
+
+  var dl = $('#download-btn');
+  var apkHref = dl.getAttribute('href');
+  var apkUrl = new URL(apkHref, location.href).href;
+  var isHttp = /^https?:$/.test(location.protocol);
+  var apkSameOrigin = new URL(apkUrl).origin === location.origin;
+
+  /* All download links follow the main button, so a missed link can't point at a stale or missing file. */
+  $$('[data-apk-link]').forEach(function (a) { if (a !== dl && a.getAttribute('href') !== apkHref) a.setAttribute('href', apkHref); });
+
+  /* iPhone / iPad: explain that APKs are Android-only. */
+  var ua = navigator.userAgent || '';
+  var isIOS = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  if (isIOS) $('#ios-note').hidden = false;
+
+  /* QR code with the absolute APK URL, for desktop visitors (hidden on small screens by CSS). */
+  function renderQR() {
+    if (!isHttp || typeof window.qrcode !== 'function') return;
+    try {
+      var qr = window.qrcode(0, 'L');                       // 'L' keeps long (e.g. GitHub) URLs to fewer, larger modules
+      qr.addData(apkUrl);
+      qr.make();
+      var n = qr.getModuleCount(), q = 4, size = n + q * 2, d = '';
+      for (var r = 0; r < n; r++) for (var c = 0; c < n; c++) if (qr.isDark(r, c)) d += 'M' + (c + q) + ' ' + (r + q) + 'h1v1h-1z';
+      $('#qr').innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + size + ' ' + size +
+        '" shape-rendering="crispEdges" aria-hidden="true"><rect width="100%" height="100%" fill="#fff"/><path fill="#1E1916" d="' + d + '"/></svg>';
+      $('#qr').setAttribute('title', apkUrl);
+      $('#qr-card').hidden = false;
+    } catch (e) { /* leave the QR box hidden */ }
+  }
+  if (typeof window.qrcode === 'function') renderQR();
+  else window.addEventListener('load', renderQR);
+
+  /* APK size: if the APK is on this same site and the server reports its size, show the real size
+     (MB as Chrome shows it, 1 MB = 1,048,576 bytes). Skipped for other sites such as GitHub Releases,
+     which don't allow this check (CORS), so the static label above is used there. */
+  if (isHttp && apkSameOrigin && window.fetch) {
+    fetch(apkHref, { method: 'HEAD', cache: 'no-store' }).then(function (res) {
+      if (!res.ok) return;
+      var type = res.headers.get('content-type') || '';
+      var len = parseInt(res.headers.get('content-length') || '0', 10);
+      if (/text\/html/i.test(type) || !(len > 1000000)) return;
+      var mb = len / 1048576;
+      var label = (mb >= 10 ? mb.toFixed(1) : mb.toFixed(2)).replace(/\.?0+$/, '') + ' MB';
+      $$('[data-apk-size]').forEach(function (el) { el.textContent = label; });
+    }).catch(function () {});
+  }
+
+  /* SHA-256 checksum from Reserve.apk.sha256 (format: "<64 hex>  Reserve.apk" or just the hash). */
+  var sumBox = $('#checksum');
+  if (window.fetch && location.protocol !== 'file:') {
+    fetch(sumBox.getAttribute('data-sha256-src'), { cache: 'no-store' }).then(function (res) {
+      if (!res.ok) throw new Error(res.status);
+      return res.text();
+    }).then(function (txt) {
+      var m = /\b([a-f0-9]{64})\b/i.exec(txt);
+      if (!m) return;
+      $('#sha256').textContent = m[1].toLowerCase();
+      $('#copy-sha').setAttribute('data-copy', m[1].toLowerCase());
+      sumBox.hidden = false;
+      setupCopy();
+    }).catch(function () {});
+  }
+
+  /* Copy buttons (only where the Clipboard API is available). */
+  function setupCopy() {
+    if (!(navigator.clipboard && window.isSecureContext)) return;
+    $$('.copy-btn[data-copy]').forEach(function (btn) {
+      if (btn.dataset.ready) return;
+      btn.dataset.ready = '1';
+      btn.hidden = false;
+      var label = btn.querySelector('span');
+      var value = btn.getAttribute('data-copy');
+      btn.setAttribute('aria-label', 'Copy ' + (btn.id === 'copy-sha' ? 'checksum' : value));
+      btn.addEventListener('click', function () {
+        navigator.clipboard.writeText(btn.getAttribute('data-copy')).then(function () {
+          label.textContent = 'Copied';
+          announce('Copied to clipboard');
+          setTimeout(function () { label.textContent = 'Copy'; }, 1600);
+        }).catch(function () {});
+      });
+    });
+  }
+  setupCopy();
+
+  /* Screenshot strip: previous / next buttons for mouse users. */
+  var strip = $('#strip');
+  var controls = $('#strip-controls');
+  var prevBtn = $('[data-strip="prev"]'), nextBtn = $('[data-strip="next"]');
+  function updateStrip() {
+    var max = strip.scrollWidth - strip.clientWidth;
+    controls.hidden = max <= 4;
+    prevBtn.disabled = strip.scrollLeft <= 4;
+    nextBtn.disabled = strip.scrollLeft >= max - 4;
+  }
+  function page(dir) {
+    strip.scrollBy({ left: dir * Math.max(strip.clientWidth * 0.8, 240), behavior: reduceMotion ? 'auto' : 'smooth' });
+  }
+  prevBtn.addEventListener('click', function () { page(-1); });
+  nextBtn.addEventListener('click', function () { page(1); });
+  strip.addEventListener('scroll', updateStrip, { passive: true });
+  window.addEventListener('resize', updateStrip);
+  updateStrip();
+
+  /* Lightbox (without JS, or without <dialog>, the links just open the image). */
+  var dialog = $('#lightbox');
+  if (!dialog || typeof dialog.showModal !== 'function') return;
+  var links = $$('.shot-link');
+  var lbImg = $('#lb-img'), lbTitle = $('#lb-title'), lbDesc = $('#lb-desc'), lbCount = $('#lb-count');
+  var current = 0, opener = null;
+
+  function show(i) {
+    current = (i + links.length) % links.length;
+    var a = links[current], thumb = a.querySelector('img'), fig = a.closest('figure');
+    lbImg.src = thumb.currentSrc || thumb.src;              // instant (already loaded)
+    lbImg.alt = thumb.alt;
+    var full = new Image();
+    full.onload = function () { if (links[current] === a) lbImg.src = full.src; };
+    full.src = a.href;
+    lbTitle.textContent = fig.querySelector('.title').textContent;
+    lbDesc.textContent = fig.querySelector('.desc').textContent;
+    lbCount.textContent = (current + 1) + ' / ' + links.length;
+  }
+  function open(i, from) {
+    opener = from;
+    show(i);
+    document.documentElement.classList.add('lb-open');
+    dialog.showModal();
+    $('#lb-close').focus();
+  }
+  function cleanup() {                                       // runs once per close (button, backdrop or Esc)
+    if (!document.documentElement.classList.contains('lb-open')) return;
+    document.documentElement.classList.remove('lb-open');
+    lbImg.src = 'data:,';
+    if (opener) opener.focus();
+  }
+  function close() { if (dialog.open) dialog.close(); cleanup(); }
+
+  links.forEach(function (a, i) {
+    a.addEventListener('click', function (e) {
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1) return;   // let "open in new tab" work
+      e.preventDefault();
+      open(i, a);
+    });
+  });
+  $('#lb-close').addEventListener('click', close);
+  $('#lb-prev').addEventListener('click', function () { show(current - 1); });
+  $('#lb-next').addEventListener('click', function () { show(current + 1); });
+  dialog.addEventListener('click', function (e) {
+    if (e.target === dialog || e.target.classList.contains('lb-figure')) close();
+  });
+  dialog.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowLeft') { e.preventDefault(); show(current - 1); }
+    else if (e.key === 'ArrowRight') { e.preventDefault(); show(current + 1); }
+  });
+  dialog.addEventListener('close', cleanup);                 // Esc closes the dialog natively
+  var x0 = null;
+  dialog.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+  dialog.addEventListener('touchend', function (e) {
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0; x0 = null;
+    if (Math.abs(dx) > 50) show(current + (dx < 0 ? 1 : -1));
+  }, { passive: true });
+})();
+</script>
+</body>
+</html>

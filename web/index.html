@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--
+    "flutter build web" replaces $FLUTTER_BASE_HREF with "/" (site root).
+    tool/build_web.ps1 then rewrites it to "./" so the finished build works
+    from any folder of a website (e.g. https://example.com/reserve/).
+  -->
+  <base href="$FLUTTER_BASE_HREF">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <!-- Same values Flutter applies when it starts (flt-viewport tells it this
+       tag is expected); set here so the loading screen is phone-sized too. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" flt-viewport>
+  <meta name="description" content="Reserve is a premium spirits and wine shopping app. Browse whisky, gin, wine and more, build a cart and track a delivery, right in your browser.">
+  <meta name="theme-color" content="#6B1520">
+  <meta name="color-scheme" content="light">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Reserve — Spirits · Wine · Beyond">
+  <meta property="og:description" content="A premium spirits and wine shopping app. Try the full demo in your browser.">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Reserve">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <title>Reserve — Spirits · Wine · Beyond</title>
+  <link rel="manifest" href="manifest.json">
+
+  <!-- The app downloads this font anyway; fetching it early lets the
+       loading screen use it and saves a round trip later. -->
+  <link rel="preload" href="assets/assets/fonts/PlayfairDisplay.ttf" as="font" type="font/ttf" crossorigin>
+
+  <style>
+    @font-face {
+      font-family: "Reserve Serif";
+      src: url("assets/assets/fonts/PlayfairDisplay.ttf") format("truetype");
+      font-weight: 400 900;
+      font-display: swap;
+    }
+
+    html, body {
+      margin: 0;
+      height: 100%;
+      background: #F4EDE4;
+    }
+
+    /* Loading screen: shown until Flutter renders its first frame. */
+    #reserve-loader {
+      position: fixed;
+      inset: 0;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+      box-sizing: border-box;
+      background: #F4EDE4;
+      color: #6B1520;
+      font-family: "Reserve Serif", Georgia, "Times New Roman", serif;
+      text-align: center;
+      transition: opacity 0.45s ease, visibility 0s linear 0.45s;
+    }
+    /* Wide windows get the same backdrop as the framed app. */
+    @media (min-width: 601px) {
+      #reserve-loader {
+        background: linear-gradient(135deg, #F8F3EC 0%, #F4EDE4 45%, #E8DCCB 100%);
+      }
+    }
+    #reserve-loader.rl-done {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .rl-monogram {
+      width: 64px;
+      height: 64px;
+      margin-bottom: 22px;
+      border-radius: 50%;
+      box-shadow: 0 10px 28px rgba(78, 14, 22, 0.18);
+    }
+    .rl-wordmark {
+      margin: 0;
+      /* Trailing letter-spacing is balanced by the left padding. */
+      padding-left: 0.55em;
+      font-size: 34px;
+      font-weight: 400;
+      letter-spacing: 0.55em;
+      line-height: 1.1;
+    }
+    .rl-tagline {
+      margin: 10px 0 0;
+      padding-left: 0.32em;
+      font: 600 11.5px/1.4 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      letter-spacing: 0.32em;
+      color: #A9824C;
+    }
+
+    .rl-track {
+      position: relative;
+      width: 132px;
+      height: 2px;
+      margin-top: 30px;
+      overflow: hidden;
+      border-radius: 2px;
+      background: rgba(107, 21, 32, 0.12);
+    }
+    .rl-bar {
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 14%;
+      border-radius: 2px;
+      background: #C6A06A;
+      transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    #reserve-loader[data-stage="script"] .rl-bar { width: 30%; }
+    #reserve-loader[data-stage="engine"] .rl-bar { width: 62%; }
+    #reserve-loader[data-stage="app"] .rl-bar { width: 86%; }
+    #reserve-loader.rl-done .rl-bar { width: 100%; }
+    /* A soft sheen sweeping the bar, so it never looks stuck. */
+    .rl-bar::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.75), transparent);
+      transform: translateX(-100%);
+      animation: rl-sheen 1.4s ease-in-out infinite;
+    }
+    @keyframes rl-sheen {
+      to { transform: translateX(100%); }
+    }
+
+    .rl-note {
+      min-height: 1.4em;
+      margin: 18px 0 0;
+      font: 500 13px/1.4 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      color: #6F665F;
+    }
+    .rl-note a { color: #6B1520; }
+    .rl-slow-text, .rl-failed-text { display: none; }
+    #reserve-loader.rl-slow .rl-slow-text { display: inline; }
+    #reserve-loader.rl-failed .rl-slow-text { display: none; }
+    #reserve-loader.rl-failed .rl-failed-text { display: inline; }
+    #reserve-loader.rl-failed .rl-track { visibility: hidden; }
+
+    @media (prefers-reduced-motion: reduce) {
+      #reserve-loader, .rl-bar { transition: none; }
+      .rl-bar::after { animation: none; }
+    }
+  </style>
+</head>
+<body>
+  <div id="reserve-loader" role="status" aria-live="polite" aria-label="Loading Reserve">
+    <img class="rl-monogram" src="icons/Icon-192.png" width="64" height="64" alt="">
+    <h1 class="rl-wordmark">RESERVE</h1>
+    <p class="rl-tagline">SPIRITS · WINE · BEYOND</p>
+    <div class="rl-track" aria-hidden="true"><div class="rl-bar"></div></div>
+    <p class="rl-note">
+      <span class="rl-slow-text">Still loading… this can take a moment on a slow connection.</span>
+      <span class="rl-failed-text">Reserve couldn’t start. <a href="" onclick="location.reload(); return false;">Reload the page</a> to try again.</span>
+    </p>
+    <noscript><p class="rl-note">Reserve needs JavaScript. Please enable it to open the app.</p></noscript>
+  </div>
+
+  <script>
+    // Fade the loading screen out once Flutter has painted its first frame.
+    window.addEventListener('flutter-first-frame', function () {
+      var loader = document.getElementById('reserve-loader');
+      if (!loader) return;
+      loader.classList.add('rl-done');
+      setTimeout(function () { loader.remove(); }, 600);
+    }, { once: true });
+  </script>
+  <!-- Starts the app; see web/flutter_bootstrap.js. -->
+  <script src="flutter_bootstrap.js" async></script>
+</body>
+</html>
