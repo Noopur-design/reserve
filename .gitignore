@@ -60,3 +60,5 @@ key.properties
 *.jks
 *.keystore
 /android/build/
+# The download page serves the APK from the same site (more reliable on phones)
+!/docs/Reserve.apk

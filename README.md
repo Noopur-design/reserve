@@ -4,7 +4,7 @@ A Flutter app for a premium liquor store, rebuilt from 26 high-fidelity UI conce
 It runs fully offline on local sample data; no backend is needed.
 
 **[Download page](https://noopur-design.github.io/reserve/)** ·
-**[Download the APK](https://github.com/Noopur-design/reserve/releases/latest/download/Reserve.apk)**
+**[Download the APK](https://noopur-design.github.io/reserve/Reserve.apk)**
 (Android 7.0+, 52.9 MB) · [All releases](https://github.com/Noopur-design/reserve/releases)
 
 <p>

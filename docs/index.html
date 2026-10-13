@@ -175,6 +175,8 @@ code, .mono { font-family: var(--mono); }
 .hero-lede { color: var(--grey); font-size: 1.0625rem; max-width: 34em; margin-bottom: 28px; }
 .cta { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
 .apk-meta { font-size: .92rem; color: var(--grey); margin: 0; font-variant-numeric: tabular-nums; }
+.apk-help { margin-top: .35rem; font-size: .85rem; }
+.apk-help a { color: var(--maroon); text-decoration: underline; text-underline-offset: 2px; }
 .apk-meta .sep { color: var(--gold-deep); }
 .link-arrow { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; color: var(--maroon); text-decoration: none; padding: 6px 0; }
 .link-arrow .icon { width: 18px; height: 18px; transition: transform .2s ease; }
@@ -509,7 +511,7 @@ html.lb-open { overflow: hidden; }
     </nav>
     <!-- APK LINK (1 of 4). All 4 links marked data-apk-link (header, main button, install step 1, footer)
          must point at the same file. See the note on the main "Download for Android" button below. -->
-    <a class="btn btn-primary header-cta" href="https://github.com/Noopur-design/reserve/releases/latest/download/Reserve.apk" download data-apk-link>
+    <a class="btn btn-primary header-cta" href="Reserve.apk" download data-apk-link>
       <svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>Download
     </a>
   </div>
@@ -527,12 +529,11 @@ html.lb-open { overflow: hidden; }
         <p class="hero-lede">A free Android demo of a luxury liquor store for India. Browse a curated cellar, check out in three steps and watch a simulated delivery, all offline on sample data.</p>
 
         <div class="cta">
-          <!-- APK LINK (2 of 4): the main one. There are 4 links marked data-apk-link: the header button,
-               this button, install step 1 and the footer. To host the APK elsewhere (e.g. GitHub Releases),
-               use Replace All on the local Reserve.apk links so all 4 change (HOSTING.md, Option 1, Step 4).
-               Safety net: the script at the bottom also copies this button's href to the other 3 links,
+          <!-- APK LINK (2 of 4): the main one. The APK is served from this same site (docs/Reserve.apk) so the
+               download starts directly on every phone; the GitHub Release below is a backup mirror.
+               The script at the bottom copies this button's href to the other 3 data-apk-link links,
                and the QR code, size check and checksum all follow this link. -->
-          <a class="btn btn-primary btn-lg" id="download-btn" href="https://github.com/Noopur-design/reserve/releases/latest/download/Reserve.apk" download data-apk-link
+          <a class="btn btn-primary btn-lg" id="download-btn" href="Reserve.apk" download data-apk-link
              type="application/vnd.android.package-archive">
             <svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>
             Download for Android
@@ -541,10 +542,17 @@ html.lb-open { overflow: hidden; }
                Size = bytes / 1,048,576, one decimal, as Chrome's download list shows it. Reserve.apk 1.0.0 is
                55,517,683 bytes = 52.9 MB. If the APK is on this same site, the page reads the real size by itself. -->
           <p class="apk-meta">Version <span id="apk-version" data-apk-version>1.0.0</span> <span class="sep" aria-hidden="true">·</span> <span id="apk-size" data-apk-size>52.9 MB</span> <span class="sep" aria-hidden="true">·</span> <span id="apk-min-android" data-apk-min-android>Android 7.0+</span></p>
+          <p class="apk-meta apk-help">Download not starting? Open this page in Chrome, or use the
+            <a href="https://github.com/Noopur-design/reserve/releases/latest/download/Reserve.apk" rel="noopener">GitHub download link</a>.</p>
           <div class="cta-row">
             <a class="link-arrow" href="#install">How to install<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
             <a class="link-arrow" href="#screens">See the screens<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
           </div>
+        </div>
+
+        <div class="notice" id="inapp-note" role="note" hidden>
+          <svg class="icon" aria-hidden="true"><use href="#i-info"/></svg>
+          <p><strong>Opened inside an app?</strong> Instagram, Facebook and some other apps can't download files. Tap the <strong>⋮</strong> menu and choose <strong>Open in Chrome</strong> (or <strong>Open in browser</strong>), then tap Download.</p>
         </div>
 
         <div class="notice" id="ios-note" role="note" hidden>
@@ -755,7 +763,7 @@ html.lb-open { overflow: hidden; }
             <div>
               <h3>Download the APK</h3>
               <!-- APK LINK (3 of 4) -->
-              <p>Tap <a href="https://github.com/Noopur-design/reserve/releases/latest/download/Reserve.apk" download data-apk-link class="ui">Download for Android</a> on your phone. If your browser warns that the file might be harmful, choose <span class="ui">Download anyway</span>.</p>
+              <p>Tap <a href="Reserve.apk" download data-apk-link class="ui">Download for Android</a> on your phone. If your browser warns that the file might be harmful, choose <span class="ui">Download anyway</span>.</p>
             </div>
           </li>
           <li class="step">
@@ -880,7 +888,7 @@ html.lb-open { overflow: hidden; }
       </div>
     </div>
     <ul class="footer-links">
-      <li><!-- APK LINK (4 of 4) --><a href="https://github.com/Noopur-design/reserve/releases/latest/download/Reserve.apk" download data-apk-link>Download APK</a></li>
+      <li><!-- APK LINK (4 of 4) --><a href="Reserve.apk" download data-apk-link>Download APK</a></li>
       <li><a href="#install">Install help</a></li>
       <li><a href="#privacy">Privacy</a></li>
       <li><a href="#top">Back to top</a></li>
@@ -932,6 +940,9 @@ html.lb-open { overflow: hidden; }
   var ua = navigator.userAgent || '';
   var isIOS = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
   if (isIOS) $('#ios-note').hidden = false;
+
+  /* In-app browsers (Instagram, Facebook, LinkedIn, Snapchat, Android WebViews) usually can't download files. */
+  if (!isIOS && /Instagram|FBAN|FBAV|FB_IAB|LinkedInApp|Snapchat|Line\/|; wv\)/.test(ua)) $('#inapp-note').hidden = false;
 
   /* QR code with the absolute APK URL, for desktop visitors (hidden on small screens by CSS). */
   function renderQR() {
